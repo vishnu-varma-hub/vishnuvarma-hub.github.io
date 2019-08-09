@@ -1,0 +1,102 @@
+<html>
+	<head>
+		<style>
+			.c{
+				margin-top:30px;
+				margin-left:30px;
+			}
+			#char{
+				color:red;
+				height:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="c">
+			<label>Name:</label><input type="text" placeholder="Enter your name" id="name">
+		</div>
+		<div class="c">
+			<label>Password:</label><input type="password" placeholder="Enter password" id="pass">
+			<input type="checkbox" onclick="showpass()"><label>Show password</label>
+			<div id="char"></div><br><br>
+			<label>Re-enter Password:</label><input type="password" placeholder="Enter password again" id="passcheck">
+			<input type="checkbox" onclick="showpasscheck()"><label>Show password</label>
+		</div>
+		<div class="c">
+			<label>Age:</label><input type="number" placeholder="Enter your age" id="age">
+		</div>
+		<div class="c">
+			<input type="checkbox" id="agree" onclick="agree()"><label>I Agree to <a href="#" onclick="terms()">Terms & Conditions</a></label>
+		</div>
+		<div class="c">
+			<input type="submit" disabled value="register" onclick="validateform()" id="submit">
+		</div>
+	</body>
+	<script>
+		
+		function validateform()
+		{
+			
+			var name=document.getElementById("name").value;
+			var password=document.getElementById("pass").value;
+			var checkpassword=document.getElementById("passcheck").value;
+			var age=document.getElementById("age").value;
+			var agree=document.getElementById("agree");
+			if(name=="")
+			{
+				alert("Name cannot be empty");
+			}
+			if(checkpassword!=password)
+			{
+				alert("Passwords must be same");
+			}
+			if(password.length<8)
+			{
+				var i=document.createElement("i");
+				var txt=document.createTextNode("password must be greater than 8 characters.");
+				i.appendChild(txt);
+				document.getElementById("char").appendChild(i);
+				//alert("Your password needs a lower case letter, uppercase and number");
+			}
+		    if (password.search(/[a-z]/) < 0) {
+			  alert("Your password needs a lower case letter")
+			} 
+			if(password.search(/[A-Z]/) < 0) {
+			  alert("Your password needs an uppser case letter")
+			} 
+			if (password.search(/[0-9]/) < 0) {
+			  alert("Your password needs a number")
+			}
+			else {
+				// Pass is OK
+			}
+		}
+		function showpass()
+		{
+			var password=document.getElementById("pass");
+			if(password.type=="password")
+			password.type="text";
+			else
+			password.type="password";
+		}
+		function showpasscheck()
+		{
+			var checkpass=document.getElementById("passcheck");
+			if(checkpass.type=="password")
+			checkpass.type="text";
+			else
+			checkpass.type="password";
+		}
+		function agree()
+		{
+			if(document.getElementById("agree").checked==true)
+			document.getElementById("submit").disabled=false;
+			else
+			document.getElementById("submit").disabled=true;
+		}
+		function terms()
+		{
+			
+		}
+		</script>
+</html>
